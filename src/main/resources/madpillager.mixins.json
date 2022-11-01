@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.madpillager.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "VillagerHostilesSensorMixin",
+    "RaidMixin"
+  ],
+  "client": [
+    "client.IllagerEntityModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

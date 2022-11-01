@@ -1,0 +1,16 @@
+{
+    "entity.madpillager.mad_pillager": "Mad Pillager",
+    "entity.madpillager.mad_tnt": "Tnt",
+    "item.madpillager.spawn_mad_pillager": "Mad Pillager Spawn Egg",
+    
+    "text.autoconfig.madpillager.title": "Mad Pillager Config",
+    "text.autoconfig.madpillager.option.tntStartTimer": "Tnt Start Timer",
+    "text.autoconfig.madpillager.option.randomExtraTicks": "Random Extra Ticks",
+    "text.autoconfig.madpillager.option.explosionPower": "Explosion Power",
+    "text.autoconfig.madpillager.option.cooldown": "Cooldown",
+    "text.autoconfig.madpillager.option.tntRotation": "Tnt Rotation",
+    "text.autoconfig.madpillager.option.startingWave": "Starting Wave",
+    "text.autoconfig.madpillager.option.minSpawnCount": "Minimum Spawn Count",
+    "text.autoconfig.madpillager.option.bonusWaveIncrease": "Bonus Wave Increase",
+    "text.autoconfig.madpillager.option.hardDifficultyIncrease": "Hard Difficulty Increase"
+}
