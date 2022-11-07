@@ -219,6 +219,14 @@ public class MadPillagerEntity extends IllagerEntity implements InventoryOwner {
     }
 
     @Override
+    public void onDeath(DamageSource damageSource) {
+        if (!this.world.isClient && this.getMainHandStack().isOf(Items.TNT))
+            this.setStackInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
+
+        super.onDeath(damageSource);
+    }
+
+    @Override
     public StackReference getStackReference(int mappedIndex) {
         int i = mappedIndex - 300;
         if (i >= 0 && i < this.inventory.size()) {
