@@ -22,7 +22,7 @@ public class EntityInit {
     public static final EntityType<MadPillagerEntity> MAD_PILLAGER_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, MadPillagerEntity::new).dimensions(EntityDimensions.fixed(0.6F, 1.95F))
             .build();
     public static final EntityType<MadTntEntity> MAD_TNT_ENTITY = FabricEntityTypeBuilder.<MadTntEntity>create(SpawnGroup.MISC, MadTntEntity::new).fireImmune()
-            .dimensions(EntityDimensions.fixed(0.98f, 0.98f)).build();
+            .dimensions(EntityDimensions.fixed(0.98f * ConfigInit.CONFIG.tntSize, 0.98f * ConfigInit.CONFIG.tntSize)).build();
 
     public static void init() {
         Registry.register(Registry.ENTITY_TYPE, new Identifier("madpillager", "mad_pillager"), MAD_PILLAGER_ENTITY);

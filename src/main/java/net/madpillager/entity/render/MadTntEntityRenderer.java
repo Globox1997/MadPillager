@@ -24,7 +24,7 @@ public class MadTntEntityRenderer extends EntityRenderer<MadTntEntity> {
 
     public MadTntEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
-        this.shadowRadius = 0.5f;
+        this.shadowRadius = 0.5f * ConfigInit.CONFIG.tntSize;
         this.blockRenderManager = context.getBlockRenderManager();
     }
 
@@ -33,6 +33,10 @@ public class MadTntEntityRenderer extends EntityRenderer<MadTntEntity> {
         matrixStack.push();
         matrixStack.translate(0.0, 0.5, 0.0);
         int j = tntEntity.getFuse();
+
+        float scale = ConfigInit.CONFIG.tntSize;
+        matrixStack.translate(0.0, 0.5f * ConfigInit.CONFIG.tntSize - 0.5f, 0.0);
+        matrixStack.scale(scale, scale, scale);
         if ((float) j - g + 1.0f < 10.0f) {
             float h = 1.0f - ((float) j - g + 1.0f) / 10.0f;
             h = MathHelper.clamp(h, 0.0f, 1.0f);

@@ -12,5 +12,6 @@
     "text.autoconfig.madpillager.option.startingWave": "Starting Wave",
     "text.autoconfig.madpillager.option.minSpawnCount": "Minimum Spawn Count",
     "text.autoconfig.madpillager.option.bonusWaveIncrease": "Bonus Wave Increase",
-    "text.autoconfig.madpillager.option.hardDifficultyIncrease": "Hard Difficulty Increase"
+    "text.autoconfig.madpillager.option.hardDifficultyIncrease": "Hard Difficulty Increase",
+    "text.autoconfig.madpillager.option.tntSize": "Tnt Size"
 }

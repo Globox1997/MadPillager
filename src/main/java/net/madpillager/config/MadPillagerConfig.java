@@ -1,6 +1,7 @@
 package net.madpillager.config;
 
 import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
@@ -24,5 +25,7 @@ public class MadPillagerConfig implements ConfigData {
     @Comment("time in ticks for fresh tnt")
     public int cooldown = 100;
     public boolean tntRotation = false;
+    @ConfigEntry.Gui.RequiresRestart
+    public float tntSize = 0.8f;
 
 }
