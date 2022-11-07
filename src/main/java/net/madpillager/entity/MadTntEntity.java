@@ -8,12 +8,17 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.TntEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
@@ -65,7 +70,7 @@ public class MadTntEntity extends TntEntity {
         if (i <= 0) {
             if (!this.world.isClient) {
                 this.discard();
-                this.explode();
+                this.explode(1.0f);
             }
         } else {
             this.updateWaterState();
@@ -107,6 +112,29 @@ public class MadTntEntity extends TntEntity {
         this.ignited = nbt.getBoolean("Ignited");
     }
 
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+        if (!this.world.isClient) {
+            if (source.getSource() != null && source.getSource() instanceof ProjectileEntity projectileEntity && projectileEntity.isOnFire()) {
+                this.discard();
+                this.explode(0.5f);
+            }
+        }
+        return super.damage(source, amount);
+    }
+
+    @Override
+    public ActionResult interact(PlayerEntity player, Hand hand) {
+        if (!this.hasVehicle() && !this.isIgnited()) {
+            if (!this.world.isClient) {
+                player.giveItemStack(new ItemStack(Items.TNT));
+                this.discard();
+            }
+            return ActionResult.success(world.isClient);
+        }
+        return super.interact(player, hand);
+    }
+
     public void setIgniterEntity(LivingEntity livingEntity) {
         this.igniter = livingEntity;
     }
@@ -119,8 +147,8 @@ public class MadTntEntity extends TntEntity {
         return this.ignited;
     }
 
-    private void explode() {
-        this.world.createExplosion(this, this.getX(), this.getBodyY(0.0625), this.getZ(), ConfigInit.CONFIG.explosionPower, Explosion.DestructionType.BREAK);
+    private void explode(float power) {
+        this.world.createExplosion(this, this.getX(), this.getBodyY(0.0625), this.getZ(), ConfigInit.CONFIG.explosionPower * power, Explosion.DestructionType.BREAK);
     }
 
 }
