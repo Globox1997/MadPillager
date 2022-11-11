@@ -16,6 +16,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.MoveToRaidCenterGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WanderAroundGoal;
@@ -67,9 +68,9 @@ public class MadPillagerEntity extends IllagerEntity implements InventoryOwner {
     @Override
     protected void initGoals() {
         super.initGoals();
-
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new RunAttack(this));
+        this.goalSelector.add(2, new MoveToRaidCenterGoal<RaiderEntity>(this));
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 5.0f, 1.0f));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 15.0f));
